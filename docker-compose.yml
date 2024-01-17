@@ -11,8 +11,14 @@ services:
       - ${DB_PORT}:3306
     volumes:
       - ./mysql:/var/lib/mysql
+    depends_on:
+      - node
+  node:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      ports:
+        3000:3000
     
 
 
-volumes:
-  mysql:
