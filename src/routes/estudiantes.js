@@ -25,10 +25,8 @@ const getEstudianteID = (request, response) => {
     [id],
     (error, results) => {
     if(error)
-    console.error("Error al obtener estudiante por ID:", error);
-                
     throw error;
-    response.status(200).json({results});
+    response.status(201).json({results});
     });
    };
 app.route("/estudiantes/:id").get(getEstudianteID);
@@ -36,8 +34,8 @@ app.route("/estudiantes/:id").get(getEstudianteID);
 //POST
 const postEstudiante = (request, response) => {
     const {nombre,apellido,fecha_nacimiento,direccion,telefono} = request.body;
-    connection.query("INSERT INTO estudiantes(id,nombre,apellido,fecha_nacimiento,direccion,telefono) VALUES (?,?,?,?,?)",
-    console.log(json("conectado a dbpost")),
+    connection.query("INSERT INTO estudiantes(nombre,apellido,fecha_nacimiento,direccion,telefono) VALUES (?,?,?,?,?)",
+    
     [nombre,apellido,fecha_nacimiento,direccion,telefono],
     (error, results) => {
     if(error)
@@ -46,7 +44,7 @@ const postEstudiante = (request, response) => {
     });
    };
   
-   app.route("/estudiante").post(postEstudiante)
+   app.route("/estudiantes").post(postEstudiante)
 
    //DELETE
    const delEstudiante = (request, response) => {
